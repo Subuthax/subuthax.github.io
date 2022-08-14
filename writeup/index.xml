@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Writeups on Subuthax</title>
-    <link>localhost/writeup/</link>
+    <link>https://subuthax.github.io/writeup/</link>
     <description>Recent content in Writeups on Subuthax</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 14 Aug 2022 18:59:02 +0200</lastBuildDate><atom:link href="localhost/writeup/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Aug 2022 18:59:02 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/writeup/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shell CTF: More Illusion</title>
-      <link>localhost/writeup/shell-ctf-more-illusion-/</link>
+      <link>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</link>
       <pubDate>Sun, 14 Aug 2022 18:59:02 +0200</pubDate>
       
-      <guid>localhost/writeup/shell-ctf-more-illusion-/</guid>
+      <guid>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</guid>
       <description>Auteur du write-up: Numb3rsProprety Category: Web Points: 500 =&amp;gt; 495 Difficulty: Hard Solves: 75 Description
 Challenge link : http://20.125.142.38:8499/
 If you still not illuded, here is another potion of illusion for you. Can you survive it ?????
