@@ -7,14 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 05 Sep 2022 22:37:19 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 18:13:37 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>KCSC2022 House of Force</title>
-      <link>https://subuthax.github.io/writeup/kcsc2022-house-of-force/</link>
-      <pubDate>Mon, 05 Sep 2022 22:37:19 +0200</pubDate>
+      <title>KCSC House of Force</title>
+      <link>https://subuthax.github.io/writeup/kcsc-house-of-force/</link>
+      <pubDate>Tue, 06 Sep 2022 18:13:37 +0200</pubDate>
       
-      <guid>https://subuthax.github.io/writeup/kcsc2022-house-of-force/</guid>
-      <description>Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+      <guid>https://subuthax.github.io/writeup/kcsc-house-of-force/</guid>
+      <description>Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
 ╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :</description>
     </item>
     
