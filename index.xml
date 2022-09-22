@@ -14,7 +14,7 @@
       <pubDate>Tue, 06 Sep 2022 18:58:25 +0200</pubDate>
       
       <guid>https://subuthax.github.io/writeup/kcsc-house-of-force/</guid>
-      <description>Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+      <description>Author: 0xR0gue Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
 ╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :</description>
     </item>
     
