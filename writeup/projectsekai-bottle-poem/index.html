@@ -11,7 +11,7 @@ No bruteforcing is required to solve this challenge. Please do not use scanner t
 Author: bwjy
 http://bottle-poem.ctf.sekai.team
 Note
-Ce chall etait super interessant et m&amp;rsquo;as appris plein de truc Introduction Overview
+Ce chall était super intéressant et m&amp;rsquo;as appris plein de truc Introduction Overview
 On arrive donc sur un site ou on nous propose de lire des poemes." />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
@@ -52,10 +52,10 @@ No bruteforcing is required to solve this challenge. Please do not use scanner t
 Author: bwjy
 http://bottle-poem.ctf.sekai.team
 Note
-Ce chall etait super interessant et m&rsquo;as appris plein de truc Introduction Overview
+Ce chall était super intéressant et m&rsquo;as appris plein de truc Introduction Overview
 On arrive donc sur un site ou on nous propose de lire des poemes."><meta itemprop="datePublished" content="2022-10-02T21:36:04+02:00" />
 <meta itemprop="dateModified" content="2022-10-02T21:36:04+02:00" />
-<meta itemprop="wordCount" content="595"><meta itemprop="image" content="https://subuthax.github.io"/>
+<meta itemprop="wordCount" content="594"><meta itemprop="image" content="https://subuthax.github.io"/>
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://subuthax.github.io"/>
@@ -67,7 +67,7 @@ No bruteforcing is required to solve this challenge. Please do not use scanner t
 Author: bwjy
 http://bottle-poem.ctf.sekai.team
 Note
-Ce chall etait super interessant et m&rsquo;as appris plein de truc Introduction Overview
+Ce chall était super intéressant et m&rsquo;as appris plein de truc Introduction Overview
 On arrive donc sur un site ou on nous propose de lire des poemes."/>
 
 
@@ -163,16 +163,15 @@ On arrive donc sur un site ou on nous propose de lire des poemes."/>
 </blockquote>
 <p><strong>Note</strong></p>
 <ul>
-<li>Ce chall etait super interessant et m&rsquo;as appris plein de truc</li>
+<li>Ce chall était super intéressant et m&rsquo;as appris plein de truc</li>
 </ul>
 <h3 id="introduction">Introduction</h3>
 <p><strong>Overview</strong></p>
 <p>On arrive donc sur un site ou on nous propose de lire des poemes. Quand on clique sur un des poemes
-on est redirige sur un endpoint /show avec un parametre <code>id=nom du poeme</code> donc on se rend compte assez rapidement que on a une lfi par ce que si on met <a href="http://bottle-poem.ctf.sekai.team/show?id=/etc/passwd">http://bottle-poem.ctf.sekai.team/show?id=/etc/passwd</a> hop
+on est redirigé sur un endpoint /show avec un paramètre <code>id=nom du poeme</code> donc on se rend compte assez rapidement que on a une lfi par ce que si on met <a href="http://bottle-poem.ctf.sekai.team/show?id=/etc/passwd">http://bottle-poem.ctf.sekai.team/show?id=/etc/passwd</a> hop
 on a notre /etc/passwd.</p>
-<p>J&rsquo;ai perdu un temps infini a cet endroit par ce que je pensais pouvoir faire un log poisoning mais en fait le chall</p>
-<p>etait en python donc pas de log.
-Avec la lfi on lis le fichier /proc/self/cmdline et la on peux voir <code>python3 -u /app/app.py</code> donc la houra on a le l&rsquo;emplacement du site.</p>
+<p>J&rsquo;ai perdu un temps infini a cet endroit par ce que je pensais pouvoir faire un log poisoning mais en fait le chall était en python donc pas de log.</p>
+<p>Avec la lfi on lis le fichier /proc/self/cmdline et la on peux voir <code>python3 -u /app/app.py</code> donc la houra on a l&rsquo;emplacement du site.</p>
 <p>On lis ensuite le fichier app.py et on se rend compte que le chall utilise Bottle qui est un framework web pour python (comme Flask sauf que ca fait super peur) jusqu&rsquo;a la rien d&rsquo;alarmant.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> bottle <span style="color:#f92672">import</span> route, run, template, request, response, error
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> config.secret <span style="color:#f92672">import</span> sekai
@@ -222,14 +221,14 @@ Avec la lfi on lis le fichier /proc/self/cmdline et la on peux voir <code>python
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>chdir(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(__file__))
 </span></span><span style="display:flex;"><span>    run(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>)
-</span></span></code></pre></div><p>On peut voir que les cookies sont signes via un variable dans /config/secret.py donc on lis ce fichier et la pof
-on a la cle utilise pour signer les cookies : <code>Se3333KKKKKKAAAAIIIIILLLLovVVVVV3333YYYYoooouuu</code>.</p>
-<p>A partir de la ca a ete assez complique par ce que on savais pas trop quoi faire mais Sanlokii le genie nous sors une doc d&rsquo;un exploit nommee <code>Known Secret</code> (ci-joint: <a href="https://www.gsdays.fr/IMG/pdf/conf-scrt.pdf">https://www.gsdays.fr/IMG/pdf/conf-scrt.pdf</a>)</p>
-<p>Enfait cet exploit consiste a signe un cookie verole avec la cle leake. En l&rsquo;occurence c&rsquo;est tres interessant pour nous car dans la ligne <code>session = request.get_cookie(&quot;name&quot;, secret=sekai)</code> la methode get_cookie est appele.</p>
+</span></span></code></pre></div><p>On peut voir que les cookies sont signés via un variable dans /config/secret.py donc on lis ce fichier et la pof
+on a la clé utilise pour signer les cookies : <code>Se3333KKKKKKAAAAIIIIILLLLovVVVVV3333YYYYoooouuu</code>.</p>
+<p>A partir de la ca a été assez compliqué par ce que on savais pas trop quoi faire mais Sanlokii le genie nous sors une doc d&rsquo;un exploit nommée <code>Known Secret</code> (ci-joint: <a href="https://www.gsdays.fr/IMG/pdf/conf-scrt.pdf">https://www.gsdays.fr/IMG/pdf/conf-scrt.pdf</a>)</p>
+<p>Enfait cet exploit consiste a signé un cookie vérolé avec la cle leaké. En l&rsquo;occurence c&rsquo;est tres intéressant pour nous car dans la ligne <code>session = request.get_cookie(&quot;name&quot;, secret=sekai)</code> la methode get_cookie est appelé.</p>
 <p>Or cette methode est affreusement pas secure car quand on regarde le code de la lib bottle elle appelle la fonction cookie_decode on vois un <code>return  pickle.loads(base64.b64decode(msg))</code>.</p>
 <p>Tiens tiens tiens une insecure serialization avec pickle. La plus trop besoin de reflechir pour avoir notre rce il suffit de faire un cookie custom avec notre rce.</p>
 <p><strong>Exploit</strong></p>
-<p>La je me suis un peu casse la tete j&rsquo;ai voulu implementer les fonctions de la lib au lieu de les import mais donc a la fin ca nous donne le code suivant:</p>
+<p>La je me suis un peu cassé la tete j&rsquo;ai voulu implémenter les fonctions de la lib au lieu de les import mais donc a la fin ca nous donne le code suivant:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span>  os
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span>  bottle  <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span>  requests
