@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="DownUnderCTF Misc Rage! Difficulty: Easy
+Statement: A raging Real Wild Child!
+Flag is the STRING you end up with after solving challenge, case insensitive.
+The challenge provide the file rage.wav
+I will open the audio file with the Sonic Visualizer application to inspect the audio content.
+Inspecting the audio spectrogram, I quickly notice that it contains Morse code:
+The value of the recovered Morse code:
+.-. .- --. .. -. --." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://subuthax.github.io/writeup/downunder-rage/" />
+
+
+    <title>
+        
+            DownUnder Rage :: Subuthax  — CTF Team &amp; CyberSecurity Enthusiast
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="DownUnder Rage">
+<meta itemprop="description" content="DownUnderCTF Misc Rage! Difficulty: Easy
+Statement: A raging Real Wild Child!
+Flag is the STRING you end up with after solving challenge, case insensitive.
+The challenge provide the file rage.wav
+I will open the audio file with the Sonic Visualizer application to inspect the audio content.
+Inspecting the audio spectrogram, I quickly notice that it contains Morse code:
+The value of the recovered Morse code:
+.-. .- --. .. -. --."><meta itemprop="datePublished" content="2022-10-02T21:34:21+02:00" />
+<meta itemprop="dateModified" content="2022-10-02T21:34:21+02:00" />
+<meta itemprop="wordCount" content="98"><meta itemprop="image" content="https://subuthax.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://subuthax.github.io"/>
+
+<meta name="twitter:title" content="DownUnder Rage"/>
+<meta name="twitter:description" content="DownUnderCTF Misc Rage! Difficulty: Easy
+Statement: A raging Real Wild Child!
+Flag is the STRING you end up with after solving challenge, case insensitive.
+The challenge provide the file rage.wav
+I will open the audio file with the Sonic Visualizer application to inspect the audio content.
+Inspecting the audio spectrogram, I quickly notice that it contains Morse code:
+The value of the recovered Morse code:
+.-. .- --. .. -. --."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-10-02 21:34:21 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">curl subuthax</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/writeup">Write-Up</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://subuthax.github.io/writeup/downunder-rage/">DownUnder Rage</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h1 id="downunderctf">DownUnderCTF</h1>
+<h2 id="misc">Misc</h2>
+<h3 id="rage">Rage!</h3>
+<p><strong>Difficulty:</strong> Easy</p>
+<p><strong>Statement:</strong> A raging Real Wild Child!</p>
+<p>Flag is the STRING you end up with after solving challenge, case insensitive.</p>
+<hr>
+<p>The challenge provide the file rage.wav</p>
+<p>I will open the audio file with the Sonic Visualizer application to inspect the audio content.</p>
+<p>Inspecting the audio spectrogram, I quickly notice that it contains Morse code:</p>
+<p><img src="https://user-images.githubusercontent.com/49941629/192498002-735dc52d-3e3b-41c8-b1f6-d70fec7f9286.png" alt="image"></p>
+<p>The value of the recovered Morse code:</p>
+<pre tabindex="0"><code>.-. .- --. .. -. --. - --- .-- . .. .-. -.. .-.. .. -... .. -.. ---
+</code></pre><p>I will use this <a href="https://morsedecoder.com/">website</a> to decode it and get the flag.</p>
+<p>Flag: <code>RAGINGTOWEIRDLIBIDO</code></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

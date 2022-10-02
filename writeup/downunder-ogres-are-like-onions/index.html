@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="DownUnderCTF Forensic Ogres are like onions Difficulty: Easy
+Statement: if you see this you have to post in #memes thems the rules
+docker run -tp 8000:8000 downunderctf/onions I start by reading the history of the docker image:
+sudo docker image history downunderctf/onions IMAGE CREATED CREATED BY SIZE COMMENT e4ad5b4d9379 3 days ago CMD [&amp;#34;/usr/local/bin/python&amp;#34; &amp;#34;-m&amp;#34; &amp;#34;http.serv… 0B buildkit.dockerfile.v0 &amp;lt;missing&amp;gt; 3 days ago EXPOSE map[8000/tcp:{}] 0B buildkit.dockerfile.v0 &amp;lt;missing&amp;gt; 3 days ago RUN /bin/sh -c rm memes/flag." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://subuthax.github.io/writeup/downunder-ogres-are-like-onions/" />
+
+
+    <title>
+        
+            DownUnder Ogres Are Like Onions :: Subuthax  — CTF Team &amp; CyberSecurity Enthusiast
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="DownUnder Ogres Are Like Onions">
+<meta itemprop="description" content="DownUnderCTF Forensic Ogres are like onions Difficulty: Easy
+Statement: if you see this you have to post in #memes thems the rules
+docker run -tp 8000:8000 downunderctf/onions I start by reading the history of the docker image:
+sudo docker image history downunderctf/onions IMAGE CREATED CREATED BY SIZE COMMENT e4ad5b4d9379 3 days ago CMD [&#34;/usr/local/bin/python&#34; &#34;-m&#34; &#34;http.serv… 0B buildkit.dockerfile.v0 &lt;missing&gt; 3 days ago EXPOSE map[8000/tcp:{}] 0B buildkit.dockerfile.v0 &lt;missing&gt; 3 days ago RUN /bin/sh -c rm memes/flag."><meta itemprop="datePublished" content="2022-10-02T21:33:51+02:00" />
+<meta itemprop="dateModified" content="2022-10-02T21:33:51+02:00" />
+<meta itemprop="wordCount" content="394"><meta itemprop="image" content="https://subuthax.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://subuthax.github.io"/>
+
+<meta name="twitter:title" content="DownUnder Ogres Are Like Onions"/>
+<meta name="twitter:description" content="DownUnderCTF Forensic Ogres are like onions Difficulty: Easy
+Statement: if you see this you have to post in #memes thems the rules
+docker run -tp 8000:8000 downunderctf/onions I start by reading the history of the docker image:
+sudo docker image history downunderctf/onions IMAGE CREATED CREATED BY SIZE COMMENT e4ad5b4d9379 3 days ago CMD [&#34;/usr/local/bin/python&#34; &#34;-m&#34; &#34;http.serv… 0B buildkit.dockerfile.v0 &lt;missing&gt; 3 days ago EXPOSE map[8000/tcp:{}] 0B buildkit.dockerfile.v0 &lt;missing&gt; 3 days ago RUN /bin/sh -c rm memes/flag."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-10-02 21:33:51 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">curl subuthax</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/writeup">Write-Up</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://subuthax.github.io/writeup/downunder-ogres-are-like-onions/">DownUnder Ogres Are Like Onions</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h1 id="downunderctf">DownUnderCTF</h1>
+<h2 id="forensic">Forensic</h2>
+<h3 id="ogres-are-like-onions">Ogres are like onions</h3>
+<p><strong>Difficulty:</strong> Easy</p>
+<p><strong>Statement:</strong> if you see this you have to post in #memes thems the rules</p>
+<pre tabindex="0"><code>docker run -tp 8000:8000 downunderctf/onions
+</code></pre><hr>
+<p>I start by reading the history of the docker image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker image history downunderctf/onions
+</span></span></code></pre></div><pre tabindex="0"><code>IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
+e4ad5b4d9379   3 days ago    CMD [&#34;/usr/local/bin/python&#34; &#34;-m&#34; &#34;http.serv…   0B        buildkit.dockerfile.v0
+&lt;missing&gt;      3 days ago    EXPOSE map[8000/tcp:{}]                         0B        buildkit.dockerfile.v0
+&lt;missing&gt;      3 days ago    RUN /bin/sh -c rm memes/flag.jpg # buildkit     0B        buildkit.dockerfile.v0
+&lt;missing&gt;      3 days ago    COPY . /app # buildkit                          527kB     buildkit.dockerfile.v0
+&lt;missing&gt;      10 days ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  CMD [&#34;python3&#34;]              0B        
+&lt;missing&gt;      2 weeks ago   /bin/sh -c set -eux;   wget -O get-pip.py &#34;$…   10.9MB    
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  ENV PYTHON_GET_PIP_SHA256…   0B        
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  ENV PYTHON_GET_PIP_URL=ht…   0B        
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  ENV PYTHON_SETUPTOOLS_VER…   0B        
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  ENV PYTHON_PIP_VERSION=22…   0B        
+&lt;missing&gt;      2 weeks ago   /bin/sh -c set -eux;  for src in idle3 pydoc…   32B       
+&lt;missing&gt;      2 weeks ago   /bin/sh -c set -eux;   apk add --no-cache --…   30.5MB    
+&lt;missing&gt;      2 weeks ago   /bin/sh -c #(nop)  ENV PYTHON_VERSION=3.10.7    0B        
+&lt;missing&gt;      6 weeks ago   /bin/sh -c #(nop)  ENV GPG_KEY=A035C8C19219B…   0B        
+&lt;missing&gt;      6 weeks ago   /bin/sh -c set -eux;  apk add --no-cache   c…   1.82MB    
+&lt;missing&gt;      6 weeks ago   /bin/sh -c #(nop)  ENV LANG=C.UTF-8             0B        
+&lt;missing&gt;      6 weeks ago   /bin/sh -c #(nop)  ENV PATH=/usr/local/bin:/…   0B        
+&lt;missing&gt;      6 weeks ago   /bin/sh -c #(nop)  CMD [&#34;/bin/sh&#34;]              0B        
+&lt;missing&gt;      6 weeks ago   /bin/sh -c #(nop) ADD file:2a949686d9886ac7c…   5.54MB
+</code></pre><p>I notice that the file containing probably the flag (<strong>flag.jpg</strong>) has been deleted during the last modifications.</p>
+<p>So I decide to inspect the content of the image in search of information:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker inspect downunderctf/onions
+</span></span></code></pre></div><p>One piece of information will catch my attention, the layers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;RootFS&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Type&#34;</span>: <span style="color:#e6db74">&#34;layers&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Layers&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:994393dc58e7931862558d06e46aa2bb17487044f670f310dffe1d24e4d1eec7&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:bdd2dbc0f630af3f7c2cb6389503e7973143e950ae8d775e0905ca27ac43d6c1&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:765276be336a7e58719078ab0668c7fc2cc1da94bd07be942b3afa5f34890716&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:71aefba622a6cb157c4c969f3ecb5b258888c9163a50193263db5b35679b0784&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:804e16ced35b2b66dc7e569b56850f09edb4ecd9fe9fdb64882562d909335b74&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:95efea6a20579cecd96c550c1fb443a39f59ca12e4719c84951a8d38b6e02322&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:d22845d014e3f57356f7b944067bedaff9839534bb52e4ef93c8e40123022ec1&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:99d81c358faa406f7a0da8ab42896478d7da83230fa102d8fcf06b603ec71327&#34;</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><p>So I decide to use the <a href="https://github.com/wagoodman/dive">dive tool</a> which allows to inspect the docker layers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dive downunderctf/onions
+</span></span></code></pre></div><p>I notice that the layer below (<strong>ID:506946d44c8939efe882d5fd59797d22f2fe84adb7e2b7af066ca1563c11d464</strong>) contains the flag file:</p>
+<p><img src="https://user-images.githubusercontent.com/49941629/192293086-24c16fd7-dbec-43ec-b9bc-2ec2608db384.png" alt="image"></p>
+<p>So I will save the image in a tarball:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker save -o flag.tar downunderctf/onions
+</span></span></code></pre></div><p>Extract the content of the target layer and read the content of the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd 506946d44c8939efe882d5fd59797d22f2fe84adb7e2b7af066ca1563c11d464 <span style="color:#f92672">&amp;&amp;</span> sudo tar xvf layer.tar
+</span></span></code></pre></div><p>Content of the file <strong>flag.jpg</strong>:</p>
+<p><img src="https://user-images.githubusercontent.com/49941629/192292708-98ad795f-c9f6-4032-a082-455bd97e78a0.png" alt="image"></p>
+<p>Flag: <code>DUCTF{P33L_B4CK_TH3_L4Y3RS}</code></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

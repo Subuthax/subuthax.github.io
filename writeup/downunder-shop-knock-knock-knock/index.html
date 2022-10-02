@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="DownUnderCTF Forensic Shop-Knock Knock Knock Difficulty: Easy
+Statement: Looks like there&amp;rsquo;s been a bruteforce/password spray attempt against the website!
+What&amp;rsquo;s the contact email for the ISP of the attacker&amp;rsquo;s IP?
+Flag format: Email address, case insensitive
+The challenge provides a JSON file containing logs.
+These logs and scenarios are designed to be real-ish, they&amp;rsquo;re simpler and given that the entire data set covers 1hr all malicious activity is conducted on a condensed time frame." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://subuthax.github.io/writeup/downunder-shop-knock-knock-knock/" />
+
+
+    <title>
+        
+            DownUnder Shop Knock Knock Knock :: Subuthax  — CTF Team &amp; CyberSecurity Enthusiast
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="DownUnder Shop Knock Knock Knock">
+<meta itemprop="description" content="DownUnderCTF Forensic Shop-Knock Knock Knock Difficulty: Easy
+Statement: Looks like there&rsquo;s been a bruteforce/password spray attempt against the website!
+What&rsquo;s the contact email for the ISP of the attacker&rsquo;s IP?
+Flag format: Email address, case insensitive
+The challenge provides a JSON file containing logs.
+These logs and scenarios are designed to be real-ish, they&rsquo;re simpler and given that the entire data set covers 1hr all malicious activity is conducted on a condensed time frame."><meta itemprop="datePublished" content="2022-10-02T21:34:53+02:00" />
+<meta itemprop="dateModified" content="2022-10-02T21:34:53+02:00" />
+<meta itemprop="wordCount" content="200"><meta itemprop="image" content="https://subuthax.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://subuthax.github.io"/>
+
+<meta name="twitter:title" content="DownUnder Shop Knock Knock Knock"/>
+<meta name="twitter:description" content="DownUnderCTF Forensic Shop-Knock Knock Knock Difficulty: Easy
+Statement: Looks like there&rsquo;s been a bruteforce/password spray attempt against the website!
+What&rsquo;s the contact email for the ISP of the attacker&rsquo;s IP?
+Flag format: Email address, case insensitive
+The challenge provides a JSON file containing logs.
+These logs and scenarios are designed to be real-ish, they&rsquo;re simpler and given that the entire data set covers 1hr all malicious activity is conducted on a condensed time frame."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-10-02 21:34:53 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">curl subuthax</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/writeup">Write-Up</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://subuthax.github.io/writeup/downunder-shop-knock-knock-knock/">DownUnder Shop Knock Knock Knock</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h1 id="downunderctf">DownUnderCTF</h1>
+<h2 id="forensic">Forensic</h2>
+<h3 id="shop-knock-knock-knock">Shop-Knock Knock Knock</h3>
+<p><strong>Difficulty:</strong> Easy</p>
+<p><strong>Statement:</strong> Looks like there&rsquo;s been a bruteforce/password spray attempt against the website!</p>
+<p>What&rsquo;s the contact email for the ISP of the attacker&rsquo;s IP?</p>
+<p>Flag format: Email address, case insensitive</p>
+<hr>
+<p>The challenge provides a JSON file containing logs.</p>
+<p>These logs and scenarios are designed to be real-ish, they&rsquo;re simpler and given that the entire data set covers 1hr all malicious activity is conducted on a condensed time frame.</p>
+<p>In these logs, I notice several points:</p>
+<ul>
+<li>Many POST requests on login page</li>
+<li>The user-agent value set to curl</li>
+<li>Recurrence of requests</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;_time&#34;</span>: <span style="color:#e6db74">&#34;2021-01-01T09:14:01.000+0000&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;58.164.62.91&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;referer&#34;</span>: <span style="color:#e6db74">&#34;null&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;useragent&#34;</span>: <span style="color:#e6db74">&#34;curl/7.64.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com/login&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logSource&#34;</span>: <span style="color:#e6db74">&#34;Http:Web&#34;</span>
+</span></span><span style="display:flex;"><span>} {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;_time&#34;</span>: <span style="color:#e6db74">&#34;2021-01-01T09:14:02.000+0000&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;58.164.62.91&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;referer&#34;</span>: <span style="color:#e6db74">&#34;null&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;useragent&#34;</span>: <span style="color:#e6db74">&#34;curl/7.64.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com/login&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logSource&#34;</span>: <span style="color:#e6db74">&#34;Http:Web&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We can also see a little earlier the attempted XSS exploit with the same IP:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;_time&#34;</span>: <span style="color:#e6db74">&#34;2021-01-01T09:12:14.000+0000&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;58.164.62.91&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;GET&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;referer&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com/product?id=%3Cscript%3Ealert%28%22Hacked%22%29%3C%2Fscript%3E&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;useragent&#34;</span>: <span style="color:#e6db74">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.36 Safari/537.36&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;shop.downunderctf.com/login&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logSource&#34;</span>: <span style="color:#e6db74">&#34;Http:Web&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I perform a whois on the malicious IP 58.164.62.91 with <a href="https://www.whois.com/whois/58.164.62.91">https://www.whois.com/whois/58.164.62.91</a> and I get the contact email address of the ISP.</p>
+<p>Flag: <code>abuse@telstra.net</code></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

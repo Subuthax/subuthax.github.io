@@ -7,31 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 06 Sep 2022 18:58:25 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Oct 2022 21:37:05 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>KCSC House of Force</title>
-      <link>https://subuthax.github.io/writeup/kcsc-house-of-force/</link>
-      <pubDate>Tue, 06 Sep 2022 18:58:25 +0200</pubDate>
-      
-      <guid>https://subuthax.github.io/writeup/kcsc-house-of-force/</guid>
-      <description>Author: 0xR0gue Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
-╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :</description>
-    </item>
-    
-    <item>
-      <title>Shell CTF: Extractor</title>
-      <link>https://subuthax.github.io/writeup/shell-ctf-extractor/</link>
-      <pubDate>Wed, 17 Aug 2022 01:26:40 +0200</pubDate>
-      
-      <guid>https://subuthax.github.io/writeup/shell-ctf-extractor/</guid>
-      <description>Extractor Enoncé We are under emergency. Enemy is ready with its nuclear weapon we need to activate our gaurds but chief who had password is dead. There is portal at URL below which holds key within super-user account, can you get the key and save us.
-Découverte On arrive sur site bien dégueulasse avec deux fonctions principales : &amp;ldquo;register&amp;rdquo; et &amp;ldquo;login&amp;rdquo;. Trois champs découlent de ces fonctions : &amp;ldquo;Username&amp;rdquo;, &amp;ldquo;Password&amp;rdquo; et &amp;ldquo;Signature&amp;rdquo;.</description>
-    </item>
-    
-    <item>
-      <title>Shell CTF: More Illusion</title>
+      <title>Shell CTF More Illusion </title>
       <link>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</link>
-      <pubDate>Sun, 14 Aug 2022 18:59:02 +0200</pubDate>
+      <pubDate>Sun, 02 Oct 2022 21:37:05 +0200</pubDate>
       
       <guid>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</guid>
       <description>Auteur du write-up: Numb3rsProprety Category: Web Points: 500 =&amp;gt; 495 Difficulty: Hard Solves: 75 Description
@@ -40,6 +20,112 @@ If you still not illuded, here is another potion of illusion for you. Can you su
 You can du it &amp;hellip;&amp;hellip;..
 Note
 Je n&amp;rsquo;ai pas mis toute la description du challenge par ce que elle fait un bras mais en gros le flag final est la concatenation du flag + la commande utilisé pour trouver le flag.</description>
+    </item>
+    
+    <item>
+      <title>Shell CTF Extractor</title>
+      <link>https://subuthax.github.io/writeup/shell-ctf-extractor/</link>
+      <pubDate>Sun, 02 Oct 2022 21:36:35 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/shell-ctf-extractor/</guid>
+      <description>Extractor Enoncé We are under emergency. Enemy is ready with its nuclear weapon we need to activate our gaurds but chief who had password is dead. There is portal at URL below which holds key within super-user account, can you get the key and save us.
+Découverte On arrive sur site bien dégueulasse avec deux fonctions principales : &amp;ldquo;register&amp;rdquo; et &amp;ldquo;login&amp;rdquo;. Trois champs découlent de ces fonctions : &amp;ldquo;Username&amp;rdquo;, &amp;ldquo;Password&amp;rdquo; et &amp;ldquo;Signature&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>ProjectSekai Bottle Poem</title>
+      <link>https://subuthax.github.io/writeup/projectsekai-bottle-poem/</link>
+      <pubDate>Sun, 02 Oct 2022 21:36:04 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/projectsekai-bottle-poem/</guid>
+      <description>Auteur du write-up: Numb3rsProprety Category: Web Points: 500 =&amp;gt; 100 Difficulty: Easy Solves: 134/900 Description
+Come and read poems in the bottle.
+No bruteforcing is required to solve this challenge. Please do not use scanner tools. Rate limiting &amp;gt;applied. &amp;gt; Flag is executable on server.
+Author: bwjy
+http://bottle-poem.ctf.sekai.team
+Note
+Ce chall etait super interessant et m&amp;rsquo;as appris plein de truc Introduction Overview
+On arrive donc sur un site ou on nous propose de lire des poemes.</description>
+    </item>
+    
+    <item>
+      <title>DownUnder Shop Knock Knock Knock</title>
+      <link>https://subuthax.github.io/writeup/downunder-shop-knock-knock-knock/</link>
+      <pubDate>Sun, 02 Oct 2022 21:34:53 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/downunder-shop-knock-knock-knock/</guid>
+      <description>DownUnderCTF Forensic Shop-Knock Knock Knock Difficulty: Easy
+Statement: Looks like there&amp;rsquo;s been a bruteforce/password spray attempt against the website!
+What&amp;rsquo;s the contact email for the ISP of the attacker&amp;rsquo;s IP?
+Flag format: Email address, case insensitive
+The challenge provides a JSON file containing logs.
+These logs and scenarios are designed to be real-ish, they&amp;rsquo;re simpler and given that the entire data set covers 1hr all malicious activity is conducted on a condensed time frame.</description>
+    </item>
+    
+    <item>
+      <title>DownUnder Rage</title>
+      <link>https://subuthax.github.io/writeup/downunder-rage/</link>
+      <pubDate>Sun, 02 Oct 2022 21:34:21 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/downunder-rage/</guid>
+      <description>DownUnderCTF Misc Rage! Difficulty: Easy
+Statement: A raging Real Wild Child!
+Flag is the STRING you end up with after solving challenge, case insensitive.
+The challenge provide the file rage.wav
+I will open the audio file with the Sonic Visualizer application to inspect the audio content.
+Inspecting the audio spectrogram, I quickly notice that it contains Morse code:
+The value of the recovered Morse code:
+.-. .- --. .. -. --.</description>
+    </item>
+    
+    <item>
+      <title>DownUnder Ogres Are Like Onions</title>
+      <link>https://subuthax.github.io/writeup/downunder-ogres-are-like-onions/</link>
+      <pubDate>Sun, 02 Oct 2022 21:33:51 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/downunder-ogres-are-like-onions/</guid>
+      <description>DownUnderCTF Forensic Ogres are like onions Difficulty: Easy
+Statement: if you see this you have to post in #memes thems the rules
+docker run -tp 8000:8000 downunderctf/onions I start by reading the history of the docker image:
+sudo docker image history downunderctf/onions IMAGE CREATED CREATED BY SIZE COMMENT e4ad5b4d9379 3 days ago CMD [&amp;#34;/usr/local/bin/python&amp;#34; &amp;#34;-m&amp;#34; &amp;#34;http.serv… 0B buildkit.dockerfile.v0 &amp;lt;missing&amp;gt; 3 days ago EXPOSE map[8000/tcp:{}] 0B buildkit.dockerfile.v0 &amp;lt;missing&amp;gt; 3 days ago RUN /bin/sh -c rm memes/flag.</description>
+    </item>
+    
+    <item>
+      <title>DownUnder Doxme</title>
+      <link>https://subuthax.github.io/writeup/downunder-doxme/</link>
+      <pubDate>Sun, 02 Oct 2022 21:32:38 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/downunder-doxme/</guid>
+      <description>DownUnderCTF Forensic Doxme Difficulty: Beginner
+Statement: Office is my safe word&amp;hellip;
+The challenge provides the doxme file.
+The statement refers to the office suite, so I will use binwalk to see if the file has embedded files or executable code:
+binwalk doxme DECIMAL HEXADECIMAL DESCRIPTION -------------------------------------------------------------------------------- 0 0x0 Zip archive data, at least v2.0 to extract, compressed size: 349, uncompressed size: 1362, name: [Content_Types].xml 426 0x1AA Zip archive data, at least v1.</description>
+    </item>
+    
+    <item>
+      <title>DownUnder DFIR Investigation 1</title>
+      <link>https://subuthax.github.io/writeup/downunder-dfir-investigation-1/</link>
+      <pubDate>Sun, 02 Oct 2022 21:31:25 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/downunder-dfir-investigation-1/</guid>
+      <description>DownUnderCTF Forensic DFIR Investigation 1 Difficulty: Medium
+Statement: An attacker has installed a C2 persistence mechanism on this system.
+When is it scheduled to next execute? What C2 IP address is the PowerShell stager configured to connect to? Flag format: DUCTF{hh:mm_IP} Flag example: DUCTF{15:27_10.0.0.8}
+File password: Awt4Wh6dT3by0hXmfFZn
+The challenge provides the dfir-investigation zip file.
+After extracting the zip, I get the file triage-image.ad1.
+To read the content of this file, I will use the FTK Imager tool via windows.</description>
+    </item>
+    
+    <item>
+      <title>KCSC House of Force</title>
+      <link>https://subuthax.github.io/writeup/kcsc-house-of-force/</link>
+      <pubDate>Tue, 06 Sep 2022 18:58:25 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/kcsc-house-of-force/</guid>
+      <description>Author: 0xR0gues Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :</description>
     </item>
     
   </channel>

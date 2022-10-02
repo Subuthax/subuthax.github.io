@@ -2,24 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</loc>
+    <lastmod>2022-10-02T21:37:05+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/</loc>
+    <lastmod>2022-10-02T21:37:05+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/</loc>
+    <lastmod>2022-10-02T21:37:05+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/shell-ctf-extractor/</loc>
+    <lastmod>2022-10-02T21:36:35+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/projectsekai-bottle-poem/</loc>
+    <lastmod>2022-10-02T21:36:04+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/downunder-shop-knock-knock-knock/</loc>
+    <lastmod>2022-10-02T21:34:53+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/downunder-rage/</loc>
+    <lastmod>2022-10-02T21:34:21+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/downunder-ogres-are-like-onions/</loc>
+    <lastmod>2022-10-02T21:33:51+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/downunder-doxme/</loc>
+    <lastmod>2022-10-02T21:32:38+02:00</lastmod>
+  </url><url>
+    <loc>https://subuthax.github.io/writeup/downunder-dfir-investigation-1/</loc>
+    <lastmod>2022-10-02T21:31:25+02:00</lastmod>
+  </url><url>
     <loc>https://subuthax.github.io/writeup/kcsc-house-of-force/</loc>
     <lastmod>2022-09-06T18:58:25+02:00</lastmod>
   </url><url>
-    <loc>https://subuthax.github.io/</loc>
-    <lastmod>2022-09-06T18:58:25+02:00</lastmod>
-  </url><url>
-    <loc>https://subuthax.github.io/writeup/</loc>
-    <lastmod>2022-09-06T18:58:25+02:00</lastmod>
-  </url><url>
-    <loc>https://subuthax.github.io/writeup/shell-ctf-extractor/</loc>
-    <lastmod>2022-08-17T01:26:40+02:00</lastmod>
-  </url><url>
-    <loc>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</loc>
-    <lastmod>2022-08-14T18:59:02+02:00</lastmod>
-  </url><url>
-    <loc>https://subuthax.github.io/blog/</loc>
-  </url><url>
-    <loc>https://subuthax.github.io/series/</loc>
+    <loc>https://subuthax.github.io/categories/</loc>
   </url><url>
     <loc>https://subuthax.github.io/tags/</loc>
   </url>
