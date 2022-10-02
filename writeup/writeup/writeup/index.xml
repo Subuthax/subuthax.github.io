@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writeups on Subuthax</title>
+    <link>https://subuthax.github.io/writeup/</link>
+    <description>Recent content in Writeups on Subuthax</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 06 Sep 2022 18:58:25 +0200</lastBuildDate><atom:link href="https://subuthax.github.io/writeup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KCSC House of Force</title>
+      <link>https://subuthax.github.io/writeup/kcsc-house-of-force/</link>
+      <pubDate>Tue, 06 Sep 2022 18:58:25 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/kcsc-house-of-force/</guid>
+      <description>Author: 0xR0gue Heap Adventure 0x01: House of force Needed : know the heap base address Need a heap overflow to overwrite the top_chunk size allocate arbitrary chunk size KCSC_CTF 2022: 5secretn0te When we start the bin, we have a menu :
+╔════════════════════════════════╗ ║ WELCOME TO KCSC ║ ╚════════════════════════════════┘ ╔══════════╗ ║██████████║ ║5ecretηΘ†E║ ║██████████║ ║██████████║ ║██████████║ ║██████████║ ╚══════════┘ [1] Create Page [2] Edit Page [3] Delete Page [4] Show Page [5] Quit &amp;gt;&amp;gt; As you can see, we can create, edit, delete and show a page When we create a chunk it ask for a username and a password :</description>
+    </item>
+    
+    <item>
+      <title>Shell CTF: Extractor</title>
+      <link>https://subuthax.github.io/writeup/shell-ctf-extractor/</link>
+      <pubDate>Wed, 17 Aug 2022 01:26:40 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/shell-ctf-extractor/</guid>
+      <description>Extractor Enoncé We are under emergency. Enemy is ready with its nuclear weapon we need to activate our gaurds but chief who had password is dead. There is portal at URL below which holds key within super-user account, can you get the key and save us.
+Découverte On arrive sur site bien dégueulasse avec deux fonctions principales : &amp;ldquo;register&amp;rdquo; et &amp;ldquo;login&amp;rdquo;. Trois champs découlent de ces fonctions : &amp;ldquo;Username&amp;rdquo;, &amp;ldquo;Password&amp;rdquo; et &amp;ldquo;Signature&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Shell CTF: More Illusion</title>
+      <link>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</link>
+      <pubDate>Sun, 14 Aug 2022 18:59:02 +0200</pubDate>
+      
+      <guid>https://subuthax.github.io/writeup/shell-ctf-more-illusion-/</guid>
+      <description>Auteur du write-up: Numb3rsProprety Category: Web Points: 500 =&amp;gt; 495 Difficulty: Hard Solves: 75 Description
+Challenge link : http://20.125.142.38:8499/
+If you still not illuded, here is another potion of illusion for you. Can you survive it ?????
+You can du it &amp;hellip;&amp;hellip;..
+Note
+Je n&amp;rsquo;ai pas mis toute la description du challenge par ce que elle fait un bras mais en gros le flag final est la concatenation du flag + la commande utilisé pour trouver le flag.</description>
+    </item>
+    
+  </channel>
+</rss>
